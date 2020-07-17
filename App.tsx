@@ -14,7 +14,6 @@ import {
   StyleSheet,
   ScrollView,
   View,
-  Text,
   StatusBar,
   Button,
 } from 'react-native';
@@ -26,20 +25,22 @@ import {
   reInitialize,
 } from './helper';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
 
 declare const global: {HermesInternal: null | {}};
 
-import RaygunClient from '@hunteva/raygun4reactnative';
+import RaygunClient from '@sundayempire/raygun4reactnative';
+import {CrashReportPayload} from '@sundayempire/raygun4reactnative/dist/types';
 RaygunClient.init({
   apiKey: 't2IwCSF44QbvhJLwDKL7Kw',
   version: 'version',
+  onBeforeSend: (report: CrashReportPayload): boolean => {
+    if (report) {
+      console.log('Before send callback, error report:', report);
+      console.log('Can return false to stop sending');
+    }
+    return true;
+  },
 });
 
 const App = () => {
@@ -149,6 +150,26 @@ const App = () => {
                   })
                 }
                 title="Set User Object"
+              />
+            </View>
+            <View
+              style={{
+                width: '45%',
+                marginBottom: 15,
+              }}>
+              <Button
+                color="green"
+                testID="replaceCustomDataBtn"
+                accessibilityLabel="replaceCustomDataBtn"
+                onPress={() =>
+                  RaygunClient.updateCustomData((data) => {
+                    console.log('Existing customData', data);
+                    return {
+                      replaceAllData: true,
+                    };
+                  })
+                }
+                title="Replace Custom Data"
               />
             </View>
             <View
