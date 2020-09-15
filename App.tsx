@@ -23,6 +23,7 @@ import {
   throwCustomError,
   promiseRejection,
   reInitialize,
+  makeNetworkCall,
 } from './helper';
 
 import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
@@ -30,17 +31,18 @@ import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
 declare const global: {HermesInternal: null | {}};
 
 import RaygunClient from '@sundayempire/raygun4reactnative';
-import {CrashReportPayload} from '@sundayempire/raygun4reactnative/dist/types';
+// import {CrashReportPayload} from '@sundayempire/raygun4reactnative/dist/types';
 RaygunClient.init({
   apiKey: 't2IwCSF44QbvhJLwDKL7Kw',
   version: 'version',
-  onBeforeSend: (report: CrashReportPayload): boolean => {
-    if (report) {
-      console.log('Before send callback, error report:', report);
-      console.log('Can return false to stop sending');
-    }
-    return true;
-  },
+  enableNativeCrashReporting: true,
+  enableRUM: true,
+  // onBeforeSend: (report: CrashReportPayload): boolean => {
+  //   if (report) {
+  //     console.log('Before send callback, error report:', report);
+  //   }
+  //   return true;
+  // },
 });
 
 const App = () => {
@@ -219,6 +221,20 @@ const App = () => {
                 accessibilityLabel="reInitializeBtn"
                 onPress={() => reInitialize()}
                 title="Trigger re-initialize native side"
+              />
+            </View>
+            <View
+              style={{
+                width: '45%',
+
+                marginBottom: 15,
+              }}>
+              <Button
+                color="green"
+                testID="makeNetworkCallBtn"
+                accessibilityLabel="makeNetworkCallBtn"
+                onPress={() => makeNetworkCall()}
+                title="Make network call"
               />
             </View>
           </View>

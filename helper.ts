@@ -16,8 +16,22 @@ const promiseRejection = async () => {
 const reInitialize = () => {
   RaygunClient.init({
     apiKey: 't2IwCSF44QbvhJLwDKL7Kw',
-    version: 'version',
+    version: 'App-version',
   });
 };
 
-export {throwUndefinedError, throwCustomError, promiseRejection, reInitialize};
+const makeNetworkCall = () => {
+  fetch('https://www.google.com')
+    .then(({headers}) =>
+      console.log('Fetch call completed', headers.get('date')),
+    )
+    .catch(console.log);
+};
+
+export {
+  throwUndefinedError,
+  throwCustomError,
+  promiseRejection,
+  reInitialize,
+  makeNetworkCall,
+};
