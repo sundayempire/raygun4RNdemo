@@ -71,7 +71,7 @@ PODS:
     - OpenSSL-Universal/Static (= 1.0.2.19)
   - OpenSSL-Universal/Static (1.0.2.19)
   - raygun4apple (1.4.2)
-  - raygun4reactnative (1.1.0-beta-16):
+  - raygun4reactnative (1.1.0-beta-18):
     - raygun4apple (~> 1.4.2)
     - React
   - RCTRequired (0.63.0)
@@ -444,7 +444,7 @@ SPEC CHECKSUMS:
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
   raygun4apple: f06505ac1830cbb88afa7f6f530a138459413d86
-  raygun4reactnative: 49829b13b20c6657801f7a4af7286e6e80d36344
+  raygun4reactnative: b1101a357d443e046d756943b4b5b41e9da9e89a
   RCTRequired: e46bb77db03887b3e200d34b08515c804669db99
   RCTTypeSafety: 270fed6675c42f80fb87b47d626ef3cede1505e6
   React: e008906ff1328f9bccb345ff4f7826397ad223fc
